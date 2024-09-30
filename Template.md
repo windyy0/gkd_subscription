@@ -1,4 +1,4 @@
-# @AIsouler/GKD_subscription
+# @windyy0/GKD_subscription
 
 ---
 

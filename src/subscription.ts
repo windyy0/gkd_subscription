@@ -19,11 +19,11 @@ apps.forEach((appConfig) => {
 });
 
 export default defineGkdSubscription({
-  id: 666,
-  name: 'AIsouler的GKD订阅',
+  id: 5277,
+  name: '姐夫送小姨子的订阅',
   version: 0,
-  author: 'AIsouler',
-  checkUpdateUrl: './AIsouler_gkd.version.json5',
+  author: '你得不到的姐夫',
+  checkUpdateUrl: './windy_gkd.version.json5',
   supportUri: 'https://github.com/AIsouler/GKD_subscription/issues/new/choose',
   categories,
   globalGroups,

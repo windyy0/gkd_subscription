@@ -1,4 +1,4 @@
-# @windyy0/GKD_subscription
+# @windyy0/gkd_subscription
 
 ---
 

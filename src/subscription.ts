@@ -24,7 +24,7 @@ export default defineGkdSubscription({
   version: 0,
   author: '你得不到的姐夫',
   checkUpdateUrl: './windy_gkd.version.json5',
-  supportUri: 'https://github.com/AIsouler/GKD_subscription/issues/new/choose',
+  supportUri: 'https://qm.qq.com/q/BJDPnKnPyM',
   categories,
   globalGroups,
   apps: rawApps,

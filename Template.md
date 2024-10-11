@@ -35,11 +35,11 @@ https://raw.githubusercontent.com/windyy0/gkd_subscription/dev/dist/windy_gkd.js
 https://raw.gitmirror.com/windyy0/gkd_subscription/dev/dist/windy_gkd.json5
 ```
 
-当前版本: v--VERSION--
+- 当前版本: v--VERSION--
 
-当前订阅文件已适配 --APP_SIZE-- 个应用，共有 --GROUP_SIZE-- 应用规则组，--GLOBALGROUP_SIZE-- 全局规则组
+- 当前订阅文件已适配 --APP_SIZE-- 个应用，共有 --GROUP_SIZE-- 应用规则组，--GLOBALGROUP_SIZE-- 全局规则组
 
-查看 [适配 APP 列表](./dist/README.md)
+- 查看 [适配 APP 列表](./dist/README.md)
 
 
 ## 感谢以下项目

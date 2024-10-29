@@ -12,6 +12,7 @@ export default defineGkdApp({
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
+      priorityTime: 10000,
       rules: [
         {
           matches: '[vid="tv_tiaoguo" || vid="iv_tg_ad"]',
@@ -84,15 +85,15 @@ export default defineGkdApp({
       rules: [
         {
           position: {
-            left: 'width * 0.9325',
-            top: 'width * 0.04203',
+            left: 'width * 0.9629',
+            top: 'width * 0.0472',
           },
           activityIds:
             'gov.pianzong.androidnga.activity.forumdetail.ArticleDetailActivity',
-          matches: '[id="advertisementBottom"]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/93c2431c-065c-421e-9fd4-112e65ef6ae2',
-          snapshotUrls: 'https://i.gkd.li/i/12893508',
+          matches: '[id="advertisementBottom"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/589a4441-4be0-4ebc-90f5-d0dc5cfc84ff',
+          snapshotUrls: 'https://i.gkd.li/i/17348441',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/17348415', // visibleToUser=true 防止误触
         },
       ],
     },

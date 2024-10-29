@@ -5,6 +5,35 @@ export default defineGkdApp({
   name: '123云盘',
   groups: [
     {
+      key: 2,
+      name: '开屏广告',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      actionMaximumKey: 0,
+      priorityTime: 10000,
+      rules: [
+        {
+          key: 0,
+          matches:
+            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14018247',
+            'https://i.gkd.li/i/13259303',
+            'https://i.gkd.li/i/13695497',
+          ],
+        },
+        {
+          key: 1,
+          matches: '[text^="跳过"][text.length<=4]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/12846434',
+            'https://i.gkd.li/i/13059834',
+          ],
+        },
+      ],
+    },
+    {
       key: 1,
       name: '全屏广告-弹窗广告',
       rules: [
@@ -54,33 +83,28 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/49cef679-3efb-4719-9af9-8f3a4c311191',
           snapshotUrls: 'https://i.gkd.li/i/17306992',
         },
+        {
+          key: 4,
+          fastQuery: true,
+          activityIds: 'com.baidu.mobads.sdk.api.MobRewardVideoActivity',
+          matches: '@ImageView[clickable=true] - [text="反馈"]',
+          exampleUrls: 'https://e.gkd.li/af430910-56e0-4b19-b23f-b120ce19fdc0',
+          snapshotUrls: 'https://i.gkd.li/i/17456625',
+        },
       ],
     },
     {
-      key: 2,
-      name: '开屏广告',
+      key: 3,
+      name: '更新提示',
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
-      actionMaximumKey: 0,
       rules: [
         {
-          key: 0,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/14018247',
-            'https://i.gkd.li/i/13259303',
-            'https://i.gkd.li/i/13695497',
-          ],
-        },
-        {
-          key: 1,
-          matches: '[text^="跳过"][text.length<=4]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/12846434',
-            'https://i.gkd.li/i/13059834',
-          ],
+          activityIds: '.MainActivity',
+          matches: '@View[clickable=true] - [desc="立即更新"]',
+          exampleUrls: 'https://e.gkd.li/02cf5d37-8808-4abb-abf9-81f7ba8a8375',
+          snapshotUrls: 'https://i.gkd.li/i/17456852',
         },
       ],
     },

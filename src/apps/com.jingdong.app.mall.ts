@@ -11,6 +11,7 @@ export default defineGkdApp({
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
+      priorityTime: 10000,
       rules: [
         {
           excludeActivityIds: 'com.jd.lib.search.view.Activity.SearchActivity',
@@ -220,6 +221,20 @@ export default defineGkdApp({
           activityIds: 'com.jd.lib.productdetail.ProductDetailActivity',
           matches: '[text="继续逛"]',
           snapshotUrls: 'https://i.gkd.li/i/15047243',
+        },
+      ],
+    },
+    {
+      key: 14,
+      name: '功能类-支付订单后点击[完成]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            '.bundle.cashierfinish.view.CashierUserContentCompleteActivity',
+          matches: '[vid="lib_cashier_finish_back_page_text"]',
+          exampleUrls: 'https://e.gkd.li/ab886df0-2b34-4804-be7d-742a06fadda9',
+          snapshotUrls: 'https://i.gkd.li/i/17358003',
         },
       ],
     },

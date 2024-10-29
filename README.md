@@ -37,7 +37,7 @@ https://raw.gitmirror.com/windyy0/gkd_subscription/dev/dist/windy_gkd.json5
 
 - 当前版本: v2
 
-- 当前订阅文件已适配 796 个应用，共有 1890 应用规则组，3 全局规则组
+- 当前订阅文件已适配 798 个应用，共有 1886 应用规则组，3 全局规则组
 
 - 查看 [适配 APP 列表](./dist/README.md)
 

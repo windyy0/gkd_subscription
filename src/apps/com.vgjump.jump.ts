@@ -11,12 +11,16 @@ export default defineGkdApp({
       actionMaximum: 1,
       resetMatch: 'app',
       actionMaximumKey: 0,
+      priorityTime: 10000,
       rules: [
         {
           key: 0,
           fastQuery: true,
-          matches: '[text="跳过"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/14790888',
+          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14790888',
+            'https://i.gkd.li/i/17444939',
+          ],
         },
         {
           key: 1,

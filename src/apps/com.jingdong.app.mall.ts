@@ -7,19 +7,26 @@ export default defineGkdApp({
     {
       key: 0,
       name: '开屏广告',
-      fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
+      actionMaximumKey: 0,
       priorityTime: 10000,
       rules: [
         {
+          key: 0,
+          fastQuery: true,
           excludeActivityIds: 'com.jd.lib.search.view.Activity.SearchActivity',
           matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/16323111',
-            'https://i.gkd.li/i/16323115', // 防止误触
-          ],
+          snapshotUrls: 'https://i.gkd.li/i/16323111',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/16323115',
+        },
+        {
+          key: 1,
+          excludeActivityIds: 'com.jd.lib.search.view.Activity.SearchActivity',
+          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/17602356', // "跳过" 节点不支持fastQuery
+          excludeSnapshotUrls: 'https://i.gkd.li/i/16323115',
         },
       ],
     },
@@ -75,14 +82,18 @@ export default defineGkdApp({
       name: '权限提示-通知权限',
       desc: '点击关闭',
       fastQuery: true,
-      //matchTime: 10000, 该弹窗可能在多个页面出现
+      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
         {
           key: 0,
+          activityIds: [
+            '.MainFrameActivity',
+            'com.jd.lib.message.messagecenter.view.activity.MessageCenterMainActivityNew',
+          ],
           matches:
-            '@ImageView[clickable=true][visibleToUser=true] <n * > [text="开启消息通知"]',
+            '@ImageView[clickable=true][visibleToUser=true] -(9,12) [text="开启消息通知"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13917163',
             'https://i.gkd.li/i/13463618',
@@ -91,6 +102,8 @@ export default defineGkdApp({
         },
         {
           key: 1,
+          activityIds:
+            'com.jd.lib.message.messagecenter.view.activity.MessageCenterMainActivityNew',
           matches: '@[clickable=true] + [text^="打开系统通知"]',
           snapshotUrls: 'https://i.gkd.li/i/12839865',
         },
@@ -143,6 +156,18 @@ export default defineGkdApp({
             'https://i.gkd.li/i/15862131',
             'https://i.gkd.li/i/16818580', // 增加excludeMatches: 'TextView[text="退换/售后"]', 避免在刚刚打开该快照页面时误触（此时activityId并未改变）
           ],
+        },
+        {
+          key: 3,
+          fastQuery: true,
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          action: 'back',
+          activityIds: '.MainFrameActivity',
+          matches: '[text^="惊喜福利来袭"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/580d3cb5-503e-47a9-ba88-056e91c2f084',
+          snapshotUrls: 'https://i.gkd.li/i/17974166',
         },
       ],
     },

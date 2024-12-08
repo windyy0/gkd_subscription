@@ -119,6 +119,9 @@ export const blackListAppIDs: string[] = [
   'com.oasisfeng.nevo.xposed', // 女娲石
   'com.reddit.frontpage', // Reddit
   'com.ghostflying.locationreportenabler', // LocationReportEnabler
+  'com.zyc.zcontrol', // ZControl
+  'org.nobody.multitts', // MultiTTS
+  'deltazero.amarok', // Amarok 更新提示在 https://i.gkd.li/i/17812411 误触
 
   'com.canghai.haoka',
   'com.xy.td',
@@ -154,7 +157,6 @@ export const blackListAppIDs: string[] = [
   'Hook.JiuWu.Xp',
   'me.weishu.kernelsu',
   'com.franco.kernel',
-  'com.molink.john.hummingbird',
   'com.samsung.android.themedesigner',
   'com.samsung.android.game.gamehome',
   'com.tencent.tmgp.sgame',
@@ -176,6 +178,14 @@ export const blackListAppIDs: string[] = [
   'flar2.devcheck',
   'com.gstarmc.android',
   'com.github.capntrips.kernelflasher',
+  'com.google.android.googlequicksearchbox',
+  'qyz.onedesign',
+  'com.samsung.android.app.repaircal',
+  'com.yhchat.app',
+  'com.skyhand.sinahelper',
+  'com.rong862.bear',
+  'be.mygod.vpnhotspot',
+  'com.samsung.android.bixby.agent',
 
   // 系统自带非系统应用
   // 小米
@@ -195,10 +205,10 @@ export const blackListAppIDs: string[] = [
   'com.duokan.phone.remotecontroller', // 万能遥控
   'com.mfashiongallery.emag', // 小米画报
   'com.miui.thirdappassistant', // 三方应用异常分析
-
   'com.xiaomi.wpslauncher', // WPS Office PC
   'com.xiaomi.cajlauncher', // CAJViewer PC
   'com.mi.car.padapp', // 小米汽车扩展屏
+  'com.android.calendar', // 日历
 
   // 三星
   'com.samsung.android.app.cameraassistant',
@@ -244,6 +254,7 @@ function filterAppsByGroup(apps: RawApp[], groupNamePrefix: string): string[] {
 export const openAdBlackListAppIDs = new Set([
   ...blackListAppIDs,
   'com.taptap', // TapTap
+  'com.sankuai.meituan', // 美团 误触 https://i.gkd.li/i/17827264
   ...filterAppsByGroup(apps, '开屏广告'),
 ]);
 

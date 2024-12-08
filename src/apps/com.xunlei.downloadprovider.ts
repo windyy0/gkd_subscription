@@ -54,24 +54,6 @@ export default defineGkdApp({
           snapshotUrls: 'https://i.gkd.li/i/12707701',
         },
         {
-          preKeys: [0],
-          key: 1,
-          name: '点击不感兴趣',
-          activityIds: [
-            'com.xunlei.downloadprovider.frame.MainTabActivity',
-            'com.xunlei.downloadprovider.download.taskdetails.newui.DownloadDetailsActivity',
-            'com.xunlei.downloadprovider.feedback.view',
-          ],
-          fastQuery: true,
-          matches:
-            '[id="com.xunlei.downloadprovider:id/feedback_not_interested_layout"]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/13625418',
-            'https://i.gkd.li/i/12707717',
-            'https://i.gkd.li/i/12707702',
-          ],
-        },
-        {
           key: 2,
           name: '点击关闭-2',
           activityIds: 'com.xunlei.downloadprovider.feedback.view',
@@ -88,6 +70,24 @@ export default defineGkdApp({
           matches:
             '[id="com.xunlei.downloadprovider:id/play_detail_ad_title"] + [id="com.xunlei.downloadprovider:id/close_iv"]',
           snapshotUrls: 'https://i.gkd.li/i/13228423',
+        },
+        {
+          preKeys: [0, 2, 3],
+          key: 1,
+          name: '点击不感兴趣',
+          fastQuery: true,
+          activityIds: [
+            'com.xunlei.downloadprovider.frame.MainTabActivity',
+            'com.xunlei.downloadprovider.download.taskdetails.newui.DownloadDetailsActivity',
+            'com.xunlei.downloadprovider.feedback.view',
+          ],
+          matches:
+            '[id="com.xunlei.downloadprovider:id/feedback_not_interested_layout"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/13625418',
+            'https://i.gkd.li/i/12707717',
+            'https://i.gkd.li/i/12707702',
+          ],
         },
       ],
     },
@@ -169,7 +169,7 @@ export default defineGkdApp({
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
           matches:
-            '@Image[childCount=0][text=""] < View[childCount=1] + View +n View > View[childCount=1] > TextView[text$="广告"]',
+            '@Image[childCount=0][text=""][width<60 && height<60] < View[childCount=1] + View +n View > View[childCount=1] > TextView[text$="广告"]',
           snapshotUrls: [
             'https://i.gkd.li/i/12868667',
             'https://i.gkd.li/i/12881946',
@@ -180,12 +180,13 @@ export default defineGkdApp({
         // 腾讯广告
         {
           key: 20,
+          fastQuery: true,
           activityIds: [
             'com.xunlei.downloadprovider.frame.MainTabActivity',
             'com.xunlei.downloadprovider.launch.LaunchActivity',
           ],
           matches:
-            '[id="android:id/content"] >(3,4) FrameLayout[childCount>3] > FrameLayout[childCount=1] > ImageView[childCount=0][text=null]',
+            '@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null][parent.childCount>3] +n FrameLayout >(1,2) [text^="立即" || text="查看详情" || text="了解更多" || text="去微信看看" || text$="应用" || text="进入小程序" || text="领取优惠" || text="跳转微信"]',
           snapshotUrls: [
             'https://i.gkd.li/i/12882132',
             'https://i.gkd.li/i/12901374',
@@ -255,27 +256,23 @@ export default defineGkdApp({
       ],
     },
     {
-      key: 5,
-      name: '局部广告-搜索页面顶部广告',
-      fastQuery: true,
-      activityIds:
-        'com.xunlei.downloadprovider.search.ui.search.SearchOperateActivity',
-      rules: '[id="com.xunlei.downloadprovider:id/search_banner_ad_close"]',
-      snapshotUrls: 'https://i.gkd.li/i/12882892',
-    },
-    {
       key: 6,
       name: '更新提示',
       fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
-      rules: '[id="com.xunlei.downloadprovider:id/x_upgrade_cancel"]',
-      snapshotUrls: 'https://i.gkd.li/i/13228920',
+      rules: [
+        {
+          activityIds: 'com.xunlei.upgrade.XUpgradeActivity',
+          matches: '[id="com.xunlei.downloadprovider:id/x_upgrade_cancel"]',
+          snapshotUrls: 'https://i.gkd.li/i/13228920',
+        },
+      ],
     },
     {
       key: 10,
-      name: '全屏广告-会员续费广告',
+      name: '全屏广告-会员广告',
       fastQuery: true,
       rules: [
         {
@@ -317,6 +314,13 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/ade9ca8a-b7a5-4a22-8c1f-d14423a34136',
           snapshotUrls: 'https://i.gkd.li/i/16914136',
         },
+        {
+          key: 5,
+          activityIds: '.download.center.DownloadCenterActivity',
+          matches: ['[text="开通超级会员"]', '[vid="close_btn"]'],
+          exampleUrls: 'https://e.gkd.li/6448cedc-2bad-4aa5-846c-9ad82c310545',
+          snapshotUrls: 'https://i.gkd.li/i/17658831',
+        },
       ],
     },
     {
@@ -325,16 +329,25 @@ export default defineGkdApp({
       desc: '点击关闭',
       rules: [
         {
+          key: 0,
           fastQuery: true,
           activityIds: 'com.xunlei.downloadprovider.frame.MainTabActivity',
           matches:
-            '[((text$="领取" || text^="立即") && text.length<5) || text^="此云盘为您的私人云盘"] <n * > [vid="close"]',
+            '[text="立即领取" || text="点击领取" || text^="此云盘为您的私人云盘"] + [vid="close"]',
           snapshotUrls: [
             'https://i.gkd.li/i/12882939',
             'https://i.gkd.li/i/15048352',
             'https://i.gkd.li/i/15048355',
             'https://i.gkd.li/i/15048357',
           ],
+        },
+        {
+          key: 1,
+          fastQuery: true,
+          activityIds: '.search.ui.search.SearchOperateActivity',
+          matches: '[vid="search_banner_ad_close"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/d9e25fc3-249f-4fb9-8606-606ed0c9c893',
+          snapshotUrls: 'https://i.gkd.li/i/17725350',
         },
       ],
     },
@@ -348,6 +361,7 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
+          activityIds: 'com.xunlei.uikit.activity.TransformActivity',
           matches: ['[text="是否打开系统通知"]', '[vid="btn_close"]'],
           exampleUrls:
             'https://m.gkd.li/57941037/bf1ee4f5-126c-46c7-bac1-5e41ec4546e3',

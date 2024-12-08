@@ -21,7 +21,7 @@ export default defineGkdApp({
         {
           key: 1,
           matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
+            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
           snapshotUrls: 'https://i.gkd.li/i/14406395',
         },
       ],
@@ -29,12 +29,18 @@ export default defineGkdApp({
     {
       key: 1,
       name: '全屏广告-创作祝福弹窗',
+      desc: '点击关闭',
       fastQuery: true,
       matchTime: 10000,
       resetMatch: 'app',
       actionMaximum: 1,
-      rules: '[id="android:id/content"] >2 [vid="button_close"]',
-      snapshotUrls: 'https://i.gkd.li/i/14179064',
+      rules: [
+        {
+          activityIds: '.ImeAppMainActivity',
+          matches: '[id="android:id/content"] >2 [vid="button_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/14179064',
+        },
+      ],
     },
     {
       key: 2,

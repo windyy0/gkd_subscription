@@ -127,9 +127,9 @@ export default defineGkdApp({
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
-      fastQuery: true,
       rules: [
         {
+          activityIds: '.activity.AppStarterActivity',
           matches: '[text="抢先体验"] -2 [text="不再提醒"]',
           snapshotUrls: 'https://i.gkd.li/i/13178485',
         },
@@ -160,8 +160,10 @@ export default defineGkdApp({
       desc: '点击X',
       rules: [
         {
+          fastQuery: true,
           activityIds: 'com.tencent.qqmusiccommon.hybrid.HybridViewActivity',
-          matches: '@[desc="关闭按钮"] <n * > [desc^="看广告"]',
+          matches:
+            '@ViewGroup[desc="关闭按钮"] - [desc^="看广告"] <2 ViewGroup < ViewGroup < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/13806773',
         },
       ],
@@ -172,9 +174,11 @@ export default defineGkdApp({
       desc: '点击关闭',
       rules: [
         {
+          fastQuery: true,
           key: 0,
           activityIds: 'com.tencent.qqmusic.activity.AppStarterActivity',
-          matches: '[id="android:id/content"] >4 ViewGroup[childCount=0]',
+          matches:
+            '@ViewGroup[childCount=0][clickable=true] <2 ViewGroup[childCount=2] < FrameLayout < FrameLayout < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/13806782',
         },
       ],
@@ -204,6 +208,7 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
+          activityIds: '.activity.AppStarterActivity',
           matches: '@[vid="close_btn"] - * > [text*="好评"]',
           snapshotUrls: 'https://i.gkd.li/i/14881903',
         },

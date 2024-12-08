@@ -22,7 +22,7 @@ export default defineGkdApp({
         {
           key: 1,
           matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
+            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
           snapshotUrls: [
             'https://i.gkd.li/i/13088169',
             'https://i.gkd.li/i/12855707',
@@ -67,9 +67,14 @@ export default defineGkdApp({
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
-      rules:
-        '@[id="com.firebear.androil:id/dismissNtfImgView"] < RelativeLayout - [id="com.firebear.androil:id/contentLay"] >3 TextView[text^="升级"]',
-      snapshotUrls: 'https://i.gkd.li/i/12755032',
+      rules: [
+        {
+          activityIds: '.app.home.MainActivity',
+          matches:
+            '@[id="com.firebear.androil:id/dismissNtfImgView"] < RelativeLayout - [id="com.firebear.androil:id/contentLay"] >3 TextView[text^="升级"]',
+          snapshotUrls: 'https://i.gkd.li/i/12755032',
+        },
+      ],
     },
   ],
 });

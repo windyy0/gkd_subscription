@@ -17,7 +17,7 @@ export default defineGkdApp({
           key: 0,
           name: '字节SDK',
           matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
+            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
           snapshotUrls: [
             'https://i.gkd.li/i/13544242',
             'https://i.gkd.li/i/13885906',
@@ -31,16 +31,6 @@ export default defineGkdApp({
           snapshotUrls: 'https://i.gkd.li/i/13626049',
         },
       ],
-    },
-    {
-      key: 1,
-      name: '更新提示',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      rules:
-        '[id="cn.lezhi.speedtest:id/rl_update_dialog_layout"] >n [id="cn.lezhi.speedtest:id/iv_close"]',
-      snapshotUrls: 'https://i.gkd.li/i/12727619',
     },
   ],
 });

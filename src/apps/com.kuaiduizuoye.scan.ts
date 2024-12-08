@@ -23,17 +23,10 @@ export default defineGkdApp({
           key: 1,
           action: 'clickCenter',
           matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][visibleToUser=true] + TextView[visibleToUser=true][text=null]',
+            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
           snapshotUrls: 'https://i.gkd.li/i/15741399',
         },
       ],
-    },
-    {
-      key: 1,
-      name: '全屏广告-首页弹窗广告',
-      activityIds: 'com.hihonor.android.launcher.drawer.DrawerLauncher',
-      rules: '[id="com.kuaiduizuoye.scan:id/iv_advertisement_widget_close"]',
-      snapshotUrls: 'https://i.gkd.li/i/12716285',
     },
   ],
 });

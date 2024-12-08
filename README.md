@@ -11,7 +11,7 @@
 
 - **仅启用 `开屏广告` 一类规则，其它所有规则均需手动打开，规则类别里可以批量开启某一类规则，建议按需开启规则，不要无脑开启规则，开启过多规则可能造成规则阻塞从而导致规则触发缓慢甚至不触发，并且规则开启越多耗电也越多 -> [点击查看耗电说明](https://gkd.li/guide/faq#power)**
 
-- **欢迎讨论 -> [点击加入QQ群](https://qm.qq.com/q/BJDPnKnPyM)**
+- **欢迎讨论 -> [点击加入QQ群](https://qm.qq.com/q/CsLz6Xvtzq)**
 
 ## 订阅
 
@@ -35,9 +35,9 @@ https://raw.githubusercontent.com/windyy0/gkd_subscription/dev/dist/windy_gkd.js
 https://raw.gitmirror.com/windyy0/gkd_subscription/dev/dist/windy_gkd.json5
 ```
 
-- 当前版本: v5
+- 当前版本: v6
 
-- 当前订阅文件已适配 800 个应用，共有 1889 应用规则组，3 全局规则组
+- 当前订阅文件已适配 774 个应用，共有 1793 应用规则组，3 全局规则组
 
 - 查看 [适配 APP 列表](./dist/README.md)
 

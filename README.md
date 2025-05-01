@@ -37,7 +37,7 @@ https://raw.githubusercontent.com/windyy0/gkd_subscription/dev/dist/windy_gkd.js
 https://raw.gitmirror.com/windyy0/gkd_subscription/dev/dist/windy_gkd.json5
 ```
 
-- 当前版本: v6
+- 当前版本: v7
 
 - 当前订阅文件已适配 780 个应用，共有 1807 应用规则组，3 全局规则组
 

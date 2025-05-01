@@ -35,18 +35,36 @@ export default defineGkdApp({
             'com.taobao.tao.TBMainActivity',
             'com.taobao.android.tbabilitykit.pop.StdPopContainerActivity',
             'com.taobao.android.detail.wrapper.activity.DetailActivity',
-            'com.alibaba.triver.container.TriverMainActivity',
           ],
           matches: '@[desc="关闭按钮"] - [vid="poplayer_native_state_id"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/12642792',
-            'https://i.gkd.li/i/13180826',
             'https://i.gkd.li/i/12648734',
             'https://i.gkd.li/i/12648746',
-            'https://i.gkd.li/i/13198239',
             'https://i.gkd.li/i/13198052',
-            'https://i.gkd.li/i/13249418',
             'https://i.gkd.li/i/14905372',
+          ],
+        },
+        {
+          key: 1,
+          fastQuery: true,
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          activityIds: 'com.taobao.tao.welcome.Welcome',
+          matches:
+            '@ImageView[desc="图片"][childCount=0][clickable=true][visibleToUser=true] <<n [vid="poplayer_native_state_id"]',
+          exampleUrls: 'https://e.gkd.li/5c77eaf1-b4dc-48c9-96af-131ae9644ffa',
+          snapshotUrls: 'https://i.gkd.li/i/18218537',
+        },
+        {
+          key: 2,
+          activityIds: 'com.taobao.browser.BrowserActivity',
+          matches:
+            'WebView[text="红包签到"] > [id="ice-container"] >(3,4) View[childCount=3] > [name$="Image" || name$="Button"][text*="jpg" || text="关闭"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/c7c06d50-a384-4869-a14f-95d219d9d08c',
+          snapshotUrls: [
+            'https://i.gkd.li/i/18587158',
+            'https://i.gkd.li/i/18587159',
           ],
         },
       ],
@@ -95,11 +113,12 @@ export default defineGkdApp({
             'com.taobao.tao.welcome.Welcome',
           ],
           matches:
-            '[text^="开启系统通知"] + @Image[visibleToUser=true] <<n [vid="poplayer_inner_view"]',
+            '@Image[visibleToUser=true][text!=null] +2 View > [visibleToUser=true][text="消息通知" || text="发货通知"] <<n [vid="poplayer_inner_view"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13446901',
             'https://i.gkd.li/i/13455424',
             'https://i.gkd.li/i/15104645',
+            'https://i.gkd.li/i/18407606',
           ],
         },
       ],
@@ -204,22 +223,22 @@ export default defineGkdApp({
     },
     {
       key: 16,
-      name: '全屏广告-花呗升级报送征信',
+      name: '全屏广告-花呗推荐弹窗',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       rules: [
         {
           key: 2,
           activityIds: 'com.alipay.android.msp.ui.views.MspContainerActivity',
           matches: [
-            '[text*="花呗升级" || text*="花呗服务"]',
-            '@[clickable=true] >n [text="暂不升级，继续付款" || text="关闭"]',
+            '[text*="花呗升级" || text*="花呗服务" || text$="开通花呗"][visibleToUser=true]',
+            '@[clickable=true] >n [text="暂不升级，继续付款" || text="关闭"][visibleToUser=true]',
           ],
           snapshotUrls: [
             'https://i.gkd.li/i/13691864',
             'https://i.gkd.li/i/13628020',
             'https://i.gkd.li/i/13898735',
+            'https://i.gkd.li/i/18296345',
           ],
         },
       ],
@@ -266,6 +285,19 @@ export default defineGkdApp({
             'com.taobao.android.detail.wrapper.activity.DetailActivity',
           matches: '[vid="view_close"]',
           snapshotUrls: 'https://i.gkd.li/i/15124094',
+        },
+      ],
+    },
+    {
+      key: 20,
+      name: '功能类-登录授权',
+      desc: '点击[确认授权]',
+      rules: [
+        {
+          activityIds: 'com.taobao.browser.BrowserActivity',
+          matches: '[text="确认授权"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/e6250a9c-3fee-4470-8c7c-1d28ea63d2a5',
+          snapshotUrls: 'https://i.gkd.li/i/18271783',
         },
       ],
     },

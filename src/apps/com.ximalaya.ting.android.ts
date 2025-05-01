@@ -5,22 +5,6 @@ export default defineGkdApp({
   name: '喜马拉雅',
   groups: [
     {
-      key: -1,
-      name: '开屏广告',
-      fastQuery: true,
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      priorityTime: 10000,
-      rules: [
-        {
-          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/7ef0b1fb-aaa0-475d-b6b4-e927776adb27',
-          snapshotUrls: 'https://i.gkd.li/i/17068586',
-        },
-      ],
-    },
-    {
       key: 0,
       name: '局部广告-首页右侧浮动广告',
       rules: [
@@ -35,30 +19,23 @@ export default defineGkdApp({
     },
     {
       key: 1,
-      name: '局部广告-播放页面-播放控制区域的广告',
+      name: '局部广告-播放页广告',
       fastQuery: true,
-      activityIds: 'com.ximalaya.ting.android.host.activity.MainActivity',
+      activityIds: '.host.activity.MainActivity',
       rules: [
         {
-          key: 0,
-          name: '暂停按钮下方的广告',
+          key: 3,
           matches:
-            '[id="com.ximalaya.ting.android:id/x_play_ad_banner_close_real"]',
-          snapshotUrls: 'https://i.gkd.li/i/12506218',
+            '@[visibleToUser=true] < ViewGroup[childCount=1] - ViewGroup[childCount=6] > [text="广告"] ',
+          exampleUrls: 'https://e.gkd.li/bbf93e2c-08b8-4155-b82c-89a629a62737',
+          snapshotUrls: 'https://i.gkd.li/i/18500523',
         },
         {
-          key: 1,
-          name: '喜马小游戏广告',
-          matches: '[id="com.ximalaya.ting.android:id/host_game_close_tv"]',
-          snapshotUrls: 'https://i.gkd.li/i/12927110',
-        },
-        {
-          key: 2,
-          name: '体验会员广告',
-          matches: '[id="com.ximalaya.ting.android:id/main_iv_close"]',
-          exampleUrls:
-            'https://m.gkd.li/6328439/ea870e6f-07c9-4167-ab62-03e52838110b',
-          snapshotUrls: 'https://i.gkd.li/i/13546642',
+          key: 4,
+          matches:
+            '[vid="main_buy_view_yellow_zone_btn_close"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/bf820eed-00ad-47a0-9581-8cdb3d76bde5',
+          snapshotUrls: 'https://i.gkd.li/i/18683999',
         },
       ],
     },
@@ -221,15 +198,34 @@ export default defineGkdApp({
       name: '权限提示-通知权限',
       desc: '取消推送通知',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
         {
-          matches: '[id="com.ximalaya.ting.android:id/cancel_btn"]',
-          exampleUrls:
-            'https://m.gkd.li/33366298/f6ac028a-509b-49d8-959a-7da90fb4d9df',
-          snapshotUrls: 'https://i.gkd.li/i/13389145',
+          activityIds: '.host.activity.MainActivity',
+          matches: [
+            '[text*="通知权限"][visibleToUser=true]',
+            '[text="取消"][visibleToUser=true]',
+          ],
+          exampleUrls: 'https://e.gkd.li/ab40c096-d024-4b7c-9c6f-245beafd373a',
+          snapshotUrls: [
+            'https://i.gkd.li/i/13389145',
+            'https://i.gkd.li/i/18391977',
+          ],
+        },
+      ],
+    },
+    {
+      key: 13,
+      name: '全屏广告-免流提示',
+      desc: '关闭[开免流送会员]弹窗',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.host.activity.MainActivity',
+          matches: '[vid="host_iv_close"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/2a7e189b-b935-4bbd-9672-c18f2bf454e9',
+          snapshotUrls: 'https://i.gkd.li/i/18326083',
         },
       ],
     },

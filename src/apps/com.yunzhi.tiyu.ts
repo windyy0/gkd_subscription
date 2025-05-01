@@ -5,23 +5,6 @@ export default defineGkdApp({
   name: '云运动',
   groups: [
     {
-      key: 0,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      priorityTime: 10000,
-      rules: [
-        {
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/6df5defd-2455-4c58-ad9a-a6ccab1c5e96',
-          snapshotUrls: 'https://i.gkd.li/i/14429559',
-        },
-      ],
-    },
-    {
       key: 2,
       name: '分段广告-首页卡片广告',
       desc: '点击关闭-点击[不感兴趣]',

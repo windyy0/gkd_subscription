@@ -131,13 +131,14 @@ export default defineGkdApp({
     },
     {
       key: 7,
-      name: '局部广告-视频悬浮广告',
+      name: '局部广告-视频页广告',
       desc: '领取大会员月卡,B站免流星卡',
       fastQuery: true,
-      matchTime: 10000,
-      actionMaximum: 1,
       rules: [
         {
+          key: 1,
+          matchTime: 10000,
+          actionMaximum: 1,
           activityIds: [
             'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
             'com.bilibili.video.videodetail.VideoDetailsActivity',
@@ -148,6 +149,16 @@ export default defineGkdApp({
             'https://i.gkd.li/i/13308344',
             'https://i.gkd.li/i/13538048',
           ],
+        },
+        {
+          key: 2,
+          fastQuery: true,
+          activityIds:
+            'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
+          matches:
+            '@[vid="close"][visibleToUser=true] - [text$="免费领B站大会员"]',
+          exampleUrls: 'https://e.gkd.li/cd934dfc-666e-4562-8b77-aac95f73694e',
+          snapshotUrls: 'https://i.gkd.li/i/18165189',
         },
       ],
     },
@@ -202,24 +213,25 @@ export default defineGkdApp({
       key: 10,
       name: '分段广告-首页推荐视频卡片广告',
       fastQuery: true,
-      activityIds: 'tv.danmaku.bili.MainActivityV2',
+      activityIds: '.MainActivityV2',
       rules: [
         {
           key: 0,
-          name: '点击卡片广告右下角菜单按钮',
-          actionMaximum: 1,
-          matches: '@[vid="more"] - [vid="desc_content"]',
+          matches:
+            '@[vid="more"] <<n [vid="tool_container" || vid="ad_tint_frame"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/14083540',
             'https://i.gkd.li/i/14588315',
             'https://i.gkd.li/i/14729855',
+            'https://i.gkd.li/i/18274379',
+            'https://i.gkd.li/i/18306851',
+            'https://i.gkd.li/i/19537979',
           ],
         },
         {
           key: 1,
-          actionMaximum: 1,
           matches:
-            '@[vid="inline_more"][visibleToUser=true] <4 ViewGroup - FrameLayout > [vid="corner_hint_container"]',
+            '@[vid="inline_more"] <<n [vid="card_content"][visibleToUser=true][getChild(1).getChild(1).vid="corner_hint_container"]',
           exampleUrls: 'https://e.gkd.li/d3d37b4e-cda3-4ba6-8af3-7b45ac8efc10',
           snapshotUrls: 'https://i.gkd.li/i/17428126',
           excludeSnapshotUrls: 'https://i.gkd.li/i/17848536',
@@ -227,17 +239,23 @@ export default defineGkdApp({
 
         //预留key
         {
-          preKeys: [0, 1],
+          preKeys: [0, 1, 2],
           key: 50,
           name: '点击[不感兴趣]/[相似内容过多]',
           matches:
-            '@[clickable=true] > [text="相似内容过多" || text="不感兴趣" || text="up主不感兴趣"]',
+            '@[clickable=true] > [text="相似内容过多" || text="不感兴趣" || text="up主不感兴趣" || text="对该up的直播不感兴趣"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13625309',
             'https://i.gkd.li/i/13742257',
             'https://i.gkd.li/i/14155801',
             'https://i.gkd.li/i/14155272',
             'https://i.gkd.li/i/17428471',
+            'https://i.gkd.li/i/18274380',
+            'https://i.gkd.li/i/18292926',
+          ],
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/18292929',
+            'https://i.gkd.li/i/18306849',
           ],
         },
       ],
@@ -263,42 +281,27 @@ export default defineGkdApp({
       name: '全屏广告-会员弹窗',
       desc: '点击关闭',
       fastQuery: true,
-      forcedTime: 10000,
       actionMaximum: 1,
+      forcedTime: 10000,
       rules: [
         {
           key: 1,
+          action: 'clickCenter',
           activityIds: [
             'tv.danmaku.bili.MainActivityV2',
             'com.bilibili.vip.web.VipWebActivity',
+            'com.bilibili.module.vip.web.VipWebActivity',
           ],
           matches:
-            'WebView[text="会员中心"] >4 [text="大会员服务协议"] +2 * >2 @TextView[visibleToUser=true][index=parent.childCount.minus(1)] <<n [vid="webview"]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/60eee9aa-8799-4097-8ddf-2783afd49586',
+            '@[index=parent.childCount.minus(1)][height<150][visibleToUser=true] <(1,2) View <(1,2) View <(4,5) View < View < View < WebView[text="会员中心" || text="大会员"] < WebView < [vid="webview"]',
+          exampleUrls: 'https://e.gkd.li/ac6dd8ae-f18e-4f48-9184-39e4dbd832ba',
           snapshotUrls: [
             'https://i.gkd.li/i/15219142',
             'https://i.gkd.li/i/15220560',
             'https://i.gkd.li/i/15289942',
+            'https://i.gkd.li/i/15328394',
+            'https://i.gkd.li/i/18236032',
           ],
-        },
-        {
-          key: 2,
-          activityIds: 'com.bilibili.vip.web.VipWebActivity',
-          matches:
-            'WebView[text="大会员"] >3 View[childCount=4] >3 View[childCount=1] > View[childCount=1] > @Image[visibleToUser=true][childCount=0][text=""] <<n [vid="webview"]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/f56c6392-c473-4988-af41-00adedbf3905',
-          snapshotUrls: 'https://i.gkd.li/i/15328394',
-        },
-        {
-          key: 3,
-          activityIds: 'tv.danmaku.bili.MainActivityV2',
-          matches:
-            '[text="会员中心"] >3 View > View[childCount=2] > View[childCount=1] > @TextView[clickable=true] <<n [vid="webview"]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/4384e301-8a79-427e-88d6-7fb8e422c6e8',
-          snapshotUrls: 'https://i.gkd.li/i/15523824',
         },
         {
           key: 4,
@@ -378,19 +381,45 @@ export default defineGkdApp({
           snapshotUrls: [
             'https://i.gkd.li/i/17675629',
             'https://i.gkd.li/i/17675894',
+            'https://i.gkd.li/i/18306858',
           ],
         },
         {
           preKeys: [0],
           key: 1,
           matches:
-            '@[clickable=true] > [text="不感兴趣" || text="相似内容过多"]',
+            '@[clickable=true] > [text="不感兴趣" || text="相似内容过多" || text="对该up的直播不感兴趣"]',
           exampleUrls: 'https://e.gkd.li/23937c2d-379c-4fb5-aaee-7295bcf0afca',
           snapshotUrls: [
             'https://i.gkd.li/i/17676025',
             'https://i.gkd.li/i/17676149',
             'https://i.gkd.li/i/17677147',
+            'https://i.gkd.li/i/18296940',
+            'https://i.gkd.li/i/18306839',
           ],
+        },
+        {
+          preKeys: [1],
+          key: 2,
+          matches: '[vid="close_dislike"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/80514576-3656-4dcc-89f5-5992803c8e77',
+          snapshotUrls: 'https://i.gkd.li/i/18587456',
+        },
+      ],
+    },
+    {
+      key: 16,
+      name: '功能类-自动关闭故事模式',
+      desc: '播放视频时退出竖屏模式',
+      matchTime: 10000,
+      actionMaximum: 1,
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.bilibili.video.story.StoryVideoActivity',
+          matches: '[vid="story_ctrl_router"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/4bfd6131-d4be-46be-affb-73338b01f49c',
+          snapshotUrls: 'https://i.gkd.li/i/18164075',
         },
       ],
     },

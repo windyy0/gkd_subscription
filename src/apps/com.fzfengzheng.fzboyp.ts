@@ -5,23 +5,6 @@ export default defineGkdApp({
   name: '风筝影评',
   groups: [
     {
-      key: 0,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      priorityTime: 10000,
-      rules: [
-        {
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/15464fe7-8f80-468d-8972-011cab0ec377',
-          snapshotUrls: 'https://i.gkd.li/i/14228338',
-        },
-      ],
-    },
-    {
       key: 1,
       name: '全屏广告-弹窗广告',
       desc: '点击关闭',

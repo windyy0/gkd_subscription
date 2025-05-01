@@ -82,7 +82,6 @@ export default defineGkdApp({
       name: '权限提示-通知权限',
       desc: '点击关闭',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
@@ -90,20 +89,20 @@ export default defineGkdApp({
           key: 0,
           activityIds: [
             '.MainFrameActivity',
-            'com.jd.lib.message.messagecenter.view.activity.MessageCenterMainActivityNew',
+            'com.jd.lib.message.messagecenter',
           ],
           matches:
-            '@ImageView[clickable=true][visibleToUser=true] -(9,12) [text="开启消息通知"]',
+            '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] -n [text="开启消息通知"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13917163',
             'https://i.gkd.li/i/13463618',
             'https://i.gkd.li/i/14692570',
+            'https://i.gkd.li/i/18060234',
           ],
         },
         {
           key: 1,
-          activityIds:
-            'com.jd.lib.message.messagecenter.view.activity.MessageCenterMainActivityNew',
+          activityIds: 'com.jd.lib.message.messagecenter',
           matches: '@[clickable=true] + [text^="打开系统通知"]',
           snapshotUrls: 'https://i.gkd.li/i/12839865',
         },
@@ -117,10 +116,13 @@ export default defineGkdApp({
           key: 0,
           activityIds: 'com.jingdong.app.mall.MainFrameActivity',
           matches: '@FrameLayout[clickable=true] > [desc="关闭"]',
+          excludeMatches:
+            '[text="确定" || text="加入购物车" || text*="购买" || text*="下单"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/13165721',
             'https://i.gkd.li/i/15364514',
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/18455760', //避免在activityIds为null时误触
         },
         {
           key: 1,

@@ -41,27 +41,5 @@ export default defineGkdApp({
         },
       ],
     },
-    {
-      key: 3,
-      name: '开屏广告',
-      fastQuery: true,
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          matches: '@View[clickable=true] <2 * <2 * < [vid="flTTContainer"]',
-          snapshotUrls: 'https://i.gkd.li/i/14021540',
-        },
-        {
-          key: 1,
-          matches: '[text^="跳过"][text.length<=6]',
-          snapshotUrls: 'https://i.gkd.li/i/13399124',
-        },
-      ],
-    },
   ],
 });

@@ -15,6 +15,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
+          action: 'clickCenter', // clickNode 可能无效
           activityIds: 'com.xiaomi.market.ui.FloatWebActivity',
           matches: '@Button[clickable=true][text="关闭"] <<n [vid="webview"]',
           snapshotUrls: 'https://i.gkd.li/i/16323123',
@@ -65,9 +66,13 @@ export default defineGkdApp({
         {
           key: 0,
           name: '升级软件后的"开启推送"弹窗',
-          activityIds: 'com.xiaomi.market.ui.UpdateListActivity',
-          matches: '[vid="dialog_cancel"]',
-          snapshotUrls: 'https://i.gkd.li/i/14814456',
+          activityIds: '.ui.UpdateListActivity',
+          matches:
+            '[vid="dialog_cancel" || text="不再提醒"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14814456',
+            'https://i.gkd.li/i/19643114',
+          ],
         },
         {
           key: 1,

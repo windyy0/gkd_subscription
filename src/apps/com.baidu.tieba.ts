@@ -26,8 +26,11 @@ export default defineGkdApp({
         },
         {
           key: 1,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
+          fastQuery: true,
+          anyMatches: [
+            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][text=null] <n FrameLayout[childCount>2] >(7,8,9,10) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑"][visibleToUser=true]',
+            'FrameLayout > FrameLayout[childCount>2] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][text=null][visibleToUser=true]',
+          ],
           snapshotUrls: 'https://i.gkd.li/i/13322227',
         },
         {
@@ -368,7 +371,7 @@ export default defineGkdApp({
           key: 0,
           activityIds: '.pb.pb.main.PbActivity',
           matches:
-            '@[clickable=true][vid="obfuscated"][visibleToUser=true] <(1,2) RelativeLayout <(1,4) RelativeLayout[childCount>1] >(3,4) [text="广告"]',
+            '@[clickable=true][visibleToUser=true] <(1,2) RelativeLayout <(1,4) RelativeLayout[childCount>1] >(3,4) [text="广告"]',
           exampleUrls: 'https://e.gkd.li/337a7e8b-500f-4a0b-ae08-018c5222d4da',
           snapshotUrls: [
             'https://i.gkd.li/i/16595124',
@@ -396,41 +399,30 @@ export default defineGkdApp({
           key: 2,
           activityIds: '.tblauncher.MainTabActivity',
           matches:
-            '@[clickable=true][vid="obfuscated"][visibleToUser=true] < LinearLayout <4 RelativeLayout +3 LinearLayout >4 [text="小游戏"]',
-          snapshotUrls: 'https://i.gkd.li/i/17943902',
+            '@ImageView[childCount=0][clickable=true][visibleToUser=true] < LinearLayout[childCount=1] <4 RelativeLayout +3 LinearLayout >4 [text="小游戏"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/17943902',
+            'https://i.gkd.li/i/18217417',
+          ],
         },
       ],
     },
     {
       key: 16,
-      name: '局部广告-帖子推广',
-      desc: '关闭首页、吧内游戏推广帖子',
+      name: '局部广告-感兴趣的吧推广',
+      desc: '关闭首页、吧内其他贴吧的推广',
       rules: [
         {
-          key: 0,
-          fastQuery: true,
-          activityIds: ['.forum.ForumActivity', '.tblauncher.MainTabActivity'],
-          // 防止误触标题以“游戏”开头的帖子，此页面推广帖子和正常帖子节点没有区别；[childCount=2]区分是否在热门页面
-          excludeMatches: 'RelativeLayout[childCount=2] > [text="热门"]',
-          matches:
-            '@ImageView[clickable=true][visibleToUser=true] < LinearLayout <4 RelativeLayout + FrameLayout > [text^="游戏"]',
-          exampleUrls: 'https://e.gkd.li/e47bb03c-a7ac-4fdf-a5c5-dac1f8606d95',
-          snapshotUrls: [
-            'https://i.gkd.li/i/16828309',
-            'https://i.gkd.li/i/16828230',
-            'https://i.gkd.li/i/16828318',
-            'https://i.gkd.li/i/16828401',
-            'https://i.gkd.li/i/16828436',
-          ],
-        },
-        {
           key: 1,
+          fastQuery: true,
           activityIds: ['.tblauncher.MainTabActivity', '.forum.ForumActivity'],
           matches:
-            '@ImageView[clickable=true][visibleToUser=true][vid="obfuscated"] - [text="你可能感兴趣的吧" || text^="本吧的人都在逛"]',
+            '@ImageView[childCount=0][clickable=true][visibleToUser=true] - [text="你可能感兴趣的吧" || text^="本吧的人都在逛"]',
+          exampleUrls: 'https://e.gkd.li/bfc13aa1-579f-46f4-beff-64b3f8ec693a',
           snapshotUrls: [
             'https://i.gkd.li/i/16914357',
             'https://i.gkd.li/i/17944680',
+            'https://i.gkd.li/i/18218517',
           ],
         },
       ],

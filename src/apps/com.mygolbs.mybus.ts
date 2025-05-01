@@ -5,35 +5,6 @@ export default defineGkdApp({
   name: '掌上公交',
   groups: [
     {
-      key: 0,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/f1099ff6-38aa-4393-8cf5-418ab8ffd20e',
-          snapshotUrls: 'https://i.gkd.li/i/12745634',
-        },
-        {
-          key: 1,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/8b0c3f96-ae36-4799-87c2-1ea37c3d2d4c',
-          snapshotUrls: [
-            'https://i.gkd.li/i/12790485',
-            'https://i.gkd.li/i/14546388',
-          ],
-        },
-      ],
-    },
-    {
       key: 1,
       name: '分段广告-卡片广告',
       activityIds: [

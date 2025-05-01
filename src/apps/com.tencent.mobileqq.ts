@@ -245,7 +245,7 @@ export default defineGkdApp({
     },
     {
       key: 7,
-      name: '功能类-扫一扫登录确认',
+      name: '功能类-登录授权',
       desc: '自动点击登录。包括 PC 登录确认、QQ 互联登录确认。',
       fastQuery: true,
       actionMaximum: 1,
@@ -258,8 +258,10 @@ export default defineGkdApp({
             'com.tencent.mobileqq.activity.DevlockQuickLoginActivity',
             'com.tencent.mobileqq.activity.DevLockQuickVerifyActivity',
           ],
-          matches:
+          matches: [
+            '[text="登录确认" || text="一键验证"][visibleToUser=true]',
             'Button[text*="登录"][clickable=true][visibleToUser=true][text.length<10]',
+          ],
           snapshotUrls: [
             'https://i.gkd.li/i/13623520',
             'https://i.gkd.li/i/12789287',
@@ -642,33 +644,36 @@ export default defineGkdApp({
     },
     {
       key: 27,
-      name: '功能类-自动抢红包',
-      desc: '自己发的红包、专属红包、口令红包、私聊红包不抢',
-      activityIds: [
-        'com.tencent.mobileqq.activity.SplashActivity',
-        'cooperation.qwallet.plugin.QWalletToolFragmentActivity',
-      ],
+      name: '功能类-自动领取群聊红包',
+      desc: '自己发的红包、专属红包、口令红包、私聊红包不领',
       rules: [
         {
           key: 0,
+          fastQuery: true,
+          activityIds: 'com.tencent.mobileqq.activity.SplashActivity',
           matches:
-            'ImageView < * < FrameLayout +2 * >3 TextView[text*="红包"] - @ViewGroup[childCount=5] > TextView[text!="已领取"]',
+            'ImageView[childCount=0] < RelativeLayout < FrameLayout +2 LinearLayout >3 @ViewGroup[clickable=true][childCount=5][!(getChild(4).text^="已")] + TextView[text="拼手气红包"]',
           exampleUrls:
             'https://m.gkd.li/57941037/7a933a7f-dc5a-4eb7-8a6f-fe3cc4e8fb5e',
-          snapshotUrls: 'https://i.gkd.li/i/14221309',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14221309',
+            'https://i.gkd.li/i/18574530',
+          ],
         },
         {
-          preKeys: 0,
+          preKeys: [0],
           key: 1,
-          matches: '@[desc="拆红包"] - RelativeLayout > [text!=null]',
+          activityIds: 'cooperation.qwallet.plugin.QWalletToolFragmentActivity',
+          matches: '[desc="拆红包"][visibleToUser=true]',
           exampleUrls:
             'https://m.gkd.li/57941037/61006833-9806-45b2-b3a1-55b9b248958f',
           snapshotUrls: 'https://i.gkd.li/i/14221242',
         },
         {
-          preKeys: 1,
+          preKeys: [1],
           key: 2,
           fastQuery: true,
+          activityIds: 'cooperation.qwallet.plugin.QWalletToolFragmentActivity',
           matches: '@[desc="返回"] + [text="红包记录"]',
           exampleUrls:
             'https://m.gkd.li/57941037/b90e6a69-ac57-41a5-bd2c-c500b92a58ba',
@@ -771,6 +776,16 @@ export default defineGkdApp({
             'https://i.gkd.li/i/17827969',
           ],
         },
+        {
+          key: 4,
+          name: '推荐你试试这些玩法',
+          activityIds:
+            'com.qzone.reborn.feedx.activity.QZoneFriendFeedXActivity',
+          fastQuery: true,
+          matches: '@[desc="关闭"] - [text="推荐你试试这些玩法"]',
+          exampleUrls: 'https://e.gkd.li/6cf71a22-0e21-4877-86a7-69d84353ad5a',
+          snapshotUrls: 'https://i.gkd.li/i/18236745',
+        },
       ],
     },
     {
@@ -785,6 +800,21 @@ export default defineGkdApp({
             '@CompoundButton[checked=true] - RelativeLayout > [text="你的QQ好友关系"]',
           exampleUrls: 'https://e.gkd.li/4d69a243-6a57-47ca-bc25-0a5353d80179',
           snapshotUrls: 'https://i.gkd.li/i/16929347',
+        },
+      ],
+    },
+    {
+      key: 32,
+      name: '其他-联系人页面-顶部可能认识的人推荐',
+      desc: '点击关闭',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.activity.SplashActivity',
+          matches:
+            '@ImageView[childCount=0][clickable=true][visibleToUser=true] -2 [text="开启推荐，发现可能认识的人。"]',
+          exampleUrls: 'https://e.gkd.li/7922ab73-cc99-4559-b18c-5ab54dd9633a',
+          snapshotUrls: 'https://i.gkd.li/i/18237415',
         },
       ],
     },

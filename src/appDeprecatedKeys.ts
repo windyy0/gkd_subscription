@@ -390,7 +390,7 @@ const appDeprecatedKeys: RawDeprecatedKeysSetting[] = [
   {
     id: 'com.douban.frodo',
     name: '豆瓣',
-    deprecatedKeys: [0, 7, 12],
+    deprecatedKeys: [0, 1, 2, 4, 7, 9, 12],
   },
   {
     id: 'com.dragon.read',
@@ -450,7 +450,7 @@ const appDeprecatedKeys: RawDeprecatedKeysSetting[] = [
   {
     id: 'com.sina.weibo',
     name: '微博',
-    deprecatedKeys: [12, 15, 16, 21],
+    deprecatedKeys: [3, 4, 6, 7, 11, 13, 12, 15, 16, 21],
   },
   {
     id: 'com.snda.wifilocating',
@@ -460,7 +460,7 @@ const appDeprecatedKeys: RawDeprecatedKeysSetting[] = [
   {
     id: 'com.ss.android.ugc.aweme',
     name: '抖音',
-    deprecatedKeys: [0, 2, 5],
+    deprecatedKeys: [0, 2, 4, 5, 6],
   },
   {
     id: 'com.taobao.taobao',

@@ -55,10 +55,12 @@ export default defineGkdApp({
           activityIds:
             'com.google.android.apps.youtube.app.watchwhile.MainActivity',
           matches:
-            '@[desc="不用了，谢谢" || desc="关闭"][visibleToUser=true] <<n [vid="bottom_ui_container" || vid="custom"]',
+            '@[desc="不用了，谢谢" || desc="关闭" || desc="Close" || desc="No thanks"][visibleToUser=true] <<n [vid="bottom_ui_container" || vid="custom"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13797512',
             'https://i.gkd.li/i/18017075',
+            'https://i.gkd.li/i/18549944',
+            'https://i.gkd.li/i/19578085',
           ],
         },
       ],
@@ -96,6 +98,21 @@ export default defineGkdApp({
             'https://i.gkd.li/i/17068647', // 翻译后
             'https://i.gkd.li/i/17501400',
           ],
+        },
+      ],
+    },
+    {
+      key: 6,
+      name: '其他-关闭播放器辅助功能弹窗',
+      desc: '点击[Dismiss]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.google.android.apps.youtube.app.watchwhile.MainActivity',
+          matches: '[text="Dismiss"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/aa8f2617-fd6d-43a8-951d-1bd6efc504d3',
+          snapshotUrls: 'https://i.gkd.li/i/19930694',
         },
       ],
     },

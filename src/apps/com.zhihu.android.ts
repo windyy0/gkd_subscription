@@ -5,6 +5,23 @@ export default defineGkdApp({
   name: '知乎',
   groups: [
     {
+      key: -1,
+      name: '开屏广告',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      priorityTime: 10000,
+      rules: [
+        {
+          fastQuery: true,
+          matches: '[vid="btn_skip"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/e129aaa6-bf4f-4455-9242-a6779667d814',
+          snapshotUrls: 'https://i.gkd.li/i/18221451',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/18221225',
+        },
+      ],
+    },
+    {
       key: 6,
       name: '分段广告-信息流广告',
       desc: '点击关闭-点击内容不感兴趣',
@@ -13,11 +30,11 @@ export default defineGkdApp({
         {
           key: 0,
           activityIds: [
-            'com.zhihu.android.feature.short_container_feature.ui.ShortContainerHostActivity',
-            'com.zhihu.android.ContentActivity',
+            '.feature.short_container_feature.ui.ShortContainerHostActivity',
+            '.ContentActivity',
           ],
           matches:
-            '@[clickable=true][visibleToUser=true] -(1,2) TextView[childCount=0][id=null][text=null][desc=null] <n * >n [text*="广告"][childCount=0][id=null][desc=null]',
+            '@[clickable=true][visibleToUser=true] -(1,2) TextView[childCount=0][id=null][text=null][desc=null] <n ViewGroup >n [text*="广告"][childCount=0][id=null][desc=null]',
           snapshotUrls: [
             'https://i.gkd.li/i/13849671',
             'https://i.gkd.li/i/14645530',
@@ -37,9 +54,9 @@ export default defineGkdApp({
         },
         {
           key: 2,
-          activityIds: 'com.zhihu.android.app.ui.activity.MainActivity',
+          activityIds: '.app.ui.activity.MainActivity',
           matches:
-            '@ImageView[clickable=true] < * - * > [text*="广告" || text$="商品介绍"]',
+            '@ImageView[clickable=true][childCount=0] < FrameLayout[childCount=1] - * > [text*="广告" || text$="商品介绍"]',
           snapshotUrls: [
             'https://i.gkd.li/i/14296163',
             'https://i.gkd.li/i/14321041',
@@ -49,15 +66,24 @@ export default defineGkdApp({
         },
         {
           key: 3,
-          activityIds: 'com.zhihu.android.app.ui.activity.MainActivity',
-          matches: '@ViewGroup[clickable=true] <4 * -3 * >2 [text*="广告"]',
-          snapshotUrls: 'https://i.gkd.li/i/14192451',
+          activityIds: ['.app.ui.activity.MainActivity', '.ContentActivity'],
+          matches:
+            '@ViewGroup[clickable=true][childCount=1] <(2,4) ViewGroup -(2,3) ViewGroup[childCount>1] >(1,2) [text*="广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14192451',
+            'https://i.gkd.li/i/18217217',
+            'https://i.gkd.li/i/19591989',
+          ],
         },
         {
           key: 4,
-          activityIds: 'com.zhihu.android.app.ui.activity.MainActivity',
-          matches: '@ViewGroup[clickable=true] <3 * < * -3 * >2 [text*="广告"]',
-          snapshotUrls: 'https://i.gkd.li/i/14730741',
+          activityIds: '.app.ui.activity.MainActivity',
+          matches:
+            '@ViewGroup[clickable=true][childCount=1] <3 ViewGroup < ViewGroup -(2,3) ViewGroup >2 [text*="广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14332161',
+            'https://i.gkd.li/i/14730741',
+          ],
         },
         {
           key: 5,
@@ -73,9 +99,9 @@ export default defineGkdApp({
           preKeys: [0, 2, 3, 4, 5],
           key: 90,
           activityIds: [
-            'com.zhihu.android.feature.short_container_feature.ui.ShortContainerHostActivity',
-            'com.zhihu.android.ContentActivity',
-            'com.zhihu.android.app.ui.activity.MainActivity',
+            '.feature.short_container_feature.ui.ShortContainerHostActivity',
+            '.ContentActivity',
+            '.app.ui.activity.MainActivity',
           ],
           matches:
             '@[clickable=true] >(1,3) [text$="不感兴趣" || text^="屏蔽作者"]',
@@ -90,26 +116,16 @@ export default defineGkdApp({
     {
       key: 10,
       name: '权限提示-通知权限',
-      desc: '点击x按钮',
+      desc: '点击关闭',
       fastQuery: true,
       actionMaximum: 1,
       resetMatch: 'app',
-      actionMaximumKey: 0,
       rules: [
         {
-          key: 0,
-          matches:
-            '[id="com.zhihu.android:id/guide_title"] - [id="com.zhihu.android:id/guide_image_exit"][clickable=true]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/25cfef06-fe50-4250-bf45-1f6210f95063',
-          snapshotUrls: 'https://i.gkd.li/i/12647583',
-        },
-        {
           key: 1,
+          activityIds: '.app.ui.activity.MainActivity',
           matches: ['[text$="内容推送"]', '[vid="btn_close"]'],
-          exampleUrls:
-            'https://m.gkd.li/57941037/1d1fee24-3ba0-4cf1-a0d5-696f4f62a5e0',
-          snapshotUrls: 'https://i.gkd.li/i/14917866',
+          snapshotUrls: 'https://i.gkd.li/i/18057057',
         },
       ],
     },
@@ -175,11 +191,11 @@ export default defineGkdApp({
         {
           key: 2,
           activityIds: [
-            'com.zhihu.android.mix.activity.ContentMixProfileActivity',
-            'com.zhihu.android.mixshortcontainer.MixShortContainerActivity',
+            '.mix.activity.ContentMixProfileActivity',
+            '.mixshortcontainer.MixShortContainerActivity',
           ],
           matches:
-            '@[text="×"][visibleToUser=true] <n * > [visibleToUser=true][text*="广告" || text="查看详情"] <<n [vid="web_frame" || vid="view_content"]',
+            '@[text="×"][visibleToUser=true] <n View > [visibleToUser=true][text*="广告" || text="查看详情"] <<n [vid="web_frame" || vid="view_content"]',
           snapshotUrls: [
             'https://i.gkd.li/i/14220104',
             'https://i.gkd.li/i/14421277',
@@ -187,19 +203,13 @@ export default defineGkdApp({
           ],
         },
         {
-          key: 4,
-          activityIds: 'com.zhihu.android.app.ui.activity.MainActivity',
-          matches: '@ViewGroup[clickable=true] <3 * < * -2 * >2 [text$="广告"]',
-          snapshotUrls: 'https://i.gkd.li/i/14332161',
-        },
-        {
           key: 5,
           activityIds: [
-            'com.zhihu.android.mixshortcontainer.MixShortContainerActivity',
-            'com.zhihu.android.mix.activity.ContentMixProfileActivity',
+            '.mixshortcontainer.MixShortContainerActivity',
+            '.mix.activity.ContentMixProfileActivity',
           ],
           matches:
-            '@Image[clickable=true][visibleToUser=true] <2 * > [visibleToUser=true][text$="广告"] <<n [vid="view_content"]',
+            '@Image[clickable=true][visibleToUser=true] <2 View > [visibleToUser=true][text$="广告"] <<n [vid="view_content"]',
           snapshotUrls: [
             'https://i.gkd.li/i/14391614',
             'https://i.gkd.li/i/15282584',
@@ -208,15 +218,15 @@ export default defineGkdApp({
         {
           key: 6,
           activityIds:
-            'com.zhihu.android.feature.short_container_feature.ui.ShortContainerHostActivity',
+            '.feature.short_container_feature.ui.ShortContainerHostActivity',
           matches:
-            '@ImageView[clickable=true][visibleToUser=true]  -(1,2) TextView[childCount=0][id=null][text=null][desc=null] <n * > [text*="知乎" || text="创作者小助手"][childCount=0][id=null][desc=null]',
+            '@ImageView[clickable=true][visibleToUser=true]  -(1,2) TextView[childCount=0][id=null][text=null][desc=null] <n ViewGroup > [text*="知乎" || text="创作者小助手"][childCount=0][id=null][desc=null]',
           snapshotUrls: [
             'https://i.gkd.li/i/14235024',
             'https://i.gkd.li/i/14944631',
             'https://i.gkd.li/i/14232195',
-            'https://i.gkd.li/i/14232195', // 避免误触
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/14232195',
         },
       ],
     },

@@ -5,32 +5,6 @@ export default defineGkdApp({
   name: '喵趣漫画',
   groups: [
     {
-      key: 0,
-      name: '开屏广告',
-      matchTime: 10000,
-      resetMatch: 'app',
-      actionMaximum: 1,
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          fastQuery: true,
-          matches: '[text="跳过"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/14753912',
-        },
-        {
-          key: 1,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/14031922',
-            'https://i.gkd.li/i/14322264',
-          ],
-        },
-      ],
-    },
-    {
       key: 2,
       name: '更新提示',
       desc: '点击"暂不"',

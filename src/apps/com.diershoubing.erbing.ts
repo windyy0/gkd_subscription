@@ -5,32 +5,6 @@ export default defineGkdApp({
   name: '二柄',
   groups: [
     {
-      key: 0,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/13378853',
-            'https://i.gkd.li/i/13546165',
-          ],
-        },
-        {
-          key: 1,
-          fastQuery: true,
-          matches: '[text="跳过"]',
-          snapshotUrls: 'https://i.gkd.li/i/13538207',
-        },
-      ],
-    },
-    {
       key: 6,
       name: '分段广告',
       fastQuery: true,

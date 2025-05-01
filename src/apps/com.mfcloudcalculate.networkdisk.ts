@@ -5,35 +5,6 @@ export default defineGkdApp({
   name: '123云盘',
   groups: [
     {
-      key: 2,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/14018247',
-            'https://i.gkd.li/i/13259303',
-            'https://i.gkd.li/i/13695497',
-          ],
-        },
-        {
-          key: 1,
-          matches: '[text^="跳过"][text.length<=4]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/12846434',
-            'https://i.gkd.li/i/13059834',
-          ],
-        },
-      ],
-    },
-    {
       key: 1,
       name: '全屏广告-弹窗广告',
       rules: [
@@ -43,13 +14,16 @@ export default defineGkdApp({
           activityIds: [
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
             'com.mfcloudcalculate.networkdisk.activity.AdFreeActivity',
+            '.activity.LauncherActivity',
           ],
-          matches: '[id$="iv_ad_free_gif"] + * > [text="关闭"]',
+          matches:
+            '[vid="tv_ad_free_close" || vid="tv_ad_free_colse"][visibleToUser=true]',
           exampleUrls:
             'https://m.gkd.li/57941037/4cafd5fd-b5ed-4df1-b9f2-f443f53a7166',
           snapshotUrls: [
             'https://i.gkd.li/i/13546173',
             'https://i.gkd.li/i/14696860',
+            'https://i.gkd.li/i/18121213',
           ],
         },
         {
@@ -100,6 +74,27 @@ export default defineGkdApp({
             '@ImageView[childCount=0][text=null][visibleToUser=true] < FrameLayout[childCount=1] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] - FrameLayout > [text^="扭动或点击"]',
           exampleUrls: 'https://e.gkd.li/069fb571-ab57-42a7-a360-79b44efc2790',
           snapshotUrls: 'https://i.gkd.li/i/18032004',
+        },
+        {
+          key: 6,
+          fastQuery: true,
+          activityIds:
+            'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
+          matches: [
+            '[text="反馈"][visibleToUser=true]',
+            '[text="跳过"][visibleToUser=true]',
+          ],
+          exampleUrls: 'https://e.gkd.li/1326c88b-81e0-4f78-b301-778d29e10433',
+          snapshotUrls: 'https://i.gkd.li/i/18121205',
+        },
+        {
+          key: 7,
+          fastQuery: true,
+          activityIds: 'com.meishu.sdk.activity.SdkInterstitialActivity',
+          matches:
+            '[vid="ms_activity_sdk_interstitial_cacel"][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/e2e7b175-20f6-4e12-a24a-504364a8b765',
+          snapshotUrls: 'https://i.gkd.li/i/18095705',
         },
       ],
     },

@@ -5,29 +5,6 @@ export default defineGkdApp({
   name: '驾考宝典',
   groups: [
     {
-      key: -1,
-      name: '开屏广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      actionMaximumKey: 0,
-      priorityTime: 10000,
-      rules: [
-        {
-          key: 0,
-          matches:
-            'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true][text=null][visibleToUser=true] + TextView[visibleToUser=true][text=null][index=parent.childCount.minus(1)]',
-          snapshotUrls: 'https://i.gkd.li/i/14812686',
-        },
-        {
-          key: 1,
-          fastQuery: true,
-          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/16283385',
-        },
-      ],
-    },
-    {
       key: 1,
       name: '局部广告-悬浮广告',
       rules: [
